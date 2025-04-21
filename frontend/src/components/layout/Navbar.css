@@ -1,140 +1,256 @@
-/* Fixed top navbar with shadow */
+/* Navbar.css */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
   background-color: white;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 0.75rem 0;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Push content down to avoid hiding behind navbar */
-body {
-  margin-top: 80px; /* Adjust based on navbar height */
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Logo */
-.navbar-brand {
+.navbar-logo {
   display: flex;
   align-items: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #3366ff;
+  gap: 0.5rem;
   text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  transition: color 0.2s;
 }
 
-.navbar-brand::before {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: #3366ff;
-  border-radius: 50%;
-  margin-right: 8px;
+.navbar-logo:hover {
+  color: var(--primary-color);
 }
 
-.logo-dots {
-  position: relative;
-  margin-right: 6px;
+.logo-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--primary-color);
 }
 
-.logo-dots::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -5px;
-  width: 5px;
-  height: 5px;
-  background-color: #3366ff;
-  border-radius: 50%;
-  transform: translateY(-50%);
+.logo-accent {
+  color: var(--primary-color);
 }
 
-/* Nav links */
+/* Navbar Links */
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-.navbar-links a {
-  color: #566583;
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  color: var(--gray-600);
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.05rem;
-  padding: 0.25rem 0.5rem;
-  position: relative;
-  transition: color 0.3s ease;
+  transition: all 0.2s;
 }
 
-.navbar-links a:hover {
-  color: #3366ff;
+.nav-link svg {
+  width: 18px;
+  height: 18px;
 }
 
-.navbar-links a::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #3366ff;
-  transition: width 0.3s ease;
+.nav-link:hover {
+  color: var(--primary-color);
+  background-color: var(--gray-50);
 }
 
-.navbar-links a:hover::after {
+.nav-link.active {
+  color: var(--primary-color);
+  background-color: var(--primary-light);
+}
+
+/* Auth Links */
+.auth-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  color: var(--gray-800);
+  font-weight: 500;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--primary-color);
+}
+
+.user-avatar svg {
   width: 100%;
+  height: 100%;
 }
 
-/* User greeting and logout */
-.user-greeting {
-  margin-right: 1rem;
-  font-weight: 500;
-  color: #566583;
-  font-size: 1.05rem;
-}
-
-.logout-btn {
-  background: none;
-  border: none;
-  color: #566583;
-  font-weight: 500;
-  font-size: 1.05rem;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  transition: color 0.3s ease;
-}
-
-.logout-btn:hover {
-  color: #3366ff;
+.user-name {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .admin-link {
-  color: #3366ff !important;
+  color: var(--primary-color) !important;
+  font-weight: 600 !important;
 }
 
-/* Responsive adjustments */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  background: none;
+  border: none;
+  color: var(--gray-600);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  color: var(--red-500);
+  background-color: var(--red-100);
+}
+
+.logout-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.auth-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.auth-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.login-btn {
+  color: var(--gray-600);
+  background-color: var(--gray-100);
+}
+
+.login-btn:hover {
+  color: var(--gray-800);
+  background-color: var(--gray-200);
+}
+
+.register-btn {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.register-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  cursor: pointer;
+  color: var(--gray-600);
+}
+
+.mobile-menu-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 0.75rem 1rem;
-    flex-wrap: wrap;
-    gap: 1rem;
+  .mobile-menu-toggle {
+    display: block;
   }
-
+  
   .navbar-links {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
   }
-
-  .user-greeting {
+  
+  .navbar-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .nav-items {
+    flex-direction: column;
     width: 100%;
-    text-align: right;
+  }
+  
+  .nav-link {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .auth-links {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .user-info {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .logout-btn,
+  .auth-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

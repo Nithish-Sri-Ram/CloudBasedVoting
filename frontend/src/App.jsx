@@ -10,10 +10,10 @@ import ElectionItem from './components/elections/ElectionItem';
 import ElectionResults from './components/elections/ElectionResult';
 import Dashboard from './components/admin/Dashboard';
 import PrivateRoute from './components/utils/PrivateRoute';
-import AuthState from './components//context/auth/AuthState';
-import ElectionState from './components/context/election/ElectionState';
-import setAuthToken from './components/utils/SetAuthtoken';
 import ErrorBoundary from './components/ErrorBoundary';
+import AuthState from './components/context/auth/AuthState';
+import ElectionState from './components/context/election/ElectionState';
+import setAuthToken from './components/utils/SetAuthToken';
 import './App.css';
 
 // Check for token
@@ -21,39 +21,39 @@ if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-function App() {
+const App = () => {
   return (
     <AuthState>
       <ElectionState>
         <Router>
-          <div className="App">
+          <div className="app-container">
             <Navbar />
-            <div className="container">
+            <main className="main-content">
               <ErrorBoundary>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/elections" element={<ElectionList />} />
-                <Route path="/elections/:id" element={<ElectionItem />} />
-                <Route path="/results/:id" element={<ElectionResults />} />
-                <Route 
-                  path="/admin/dashboard" 
-                  element={
-                    <PrivateRoute>
-                      <Dashboard />
-                    </PrivateRoute>
-                  } 
-                />
-              </Routes>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/elections" element={<ElectionList />} />
+                  <Route path="/elections/:id" element={<ElectionItem />} />
+                  <Route path="/results/:id" element={<ElectionResults />} />
+                  <Route 
+                    path="/admin/dashboard" 
+                    element={
+                      <PrivateRoute>
+                        <Dashboard />
+                      </PrivateRoute>
+                    } 
+                  />
+                </Routes>
               </ErrorBoundary>
-            </div>
-            {/* <Footer /> */}
+            </main>
+            <Footer />
           </div>
         </Router>
       </ElectionState>
     </AuthState>
   );
-}
+};
 
 export default App;

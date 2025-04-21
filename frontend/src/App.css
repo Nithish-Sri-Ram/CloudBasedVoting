@@ -1,0 +1,363 @@
+/* App.css - Global styles */
+:root {
+    --primary-color: #4f46e5;
+    --primary-light: #e0e7ff;
+    --primary-dark: #4338ca;
+    --secondary-color: #f3f4f6;
+    --secondary-dark: #e5e7eb;
+    --text-dark: #1f2937;
+    --text-medium: #4b5563;
+    --text-light: #6b7280;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --border-radius: 0.5rem;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.5;
+    color: var(--text-dark);
+    background-color: var(--gray-50);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-top: 80px; /* Adjust based on navbar height */
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.2s ease;
+  }
+  
+  a:hover {
+    color: var(--primary-dark);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    color: var(--gray-900);
+  }
+  
+  p {
+    margin-bottom: 1rem;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  /* Container */
+  .container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* App Layout */
+  .App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    outline: none;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  .btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--secondary-dark);
+  }
+  
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-success {
+    background-color: var(--success);
+    color: white;
+  }
+  
+  .btn-warning {
+    background-color: var(--warning);
+    color: white;
+  }
+  
+  .btn-danger {
+    background-color: var(--danger);
+    color: white;
+  }
+  
+  /* Alerts */
+  .alert {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+  }
+  
+  .alert-info {
+    background-color: #dbeafe;
+    color: #1e40af;
+  }
+  
+  .alert-success {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+  
+  .alert-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+  
+  .alert-danger {
+    background-color: #fee2e2;
+    color: #b91c1c;
+  }
+  
+  /* Loader */
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+  
+  .loader:after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--gray-200);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: loader-spin 1s linear infinite;
+  }
+  
+  @keyframes loader-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Utilities */
+  .text-center {
+    text-align: center;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .gap-2 {
+    gap: 0.5rem;
+  }
+  
+  .gap-4 {
+    gap: 1rem;
+  }
+  
+  .gap-8 {
+    gap: 2rem;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .mt-8 {
+    margin-top: 2rem;
+  }
+  
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .mb-8 {
+    margin-bottom: 2rem;
+  }
+  
+  .my-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .p-4 {
+    padding: 1rem;
+  }
+  
+  .p-8 {
+    padding: 2rem;
+  }
+  
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .rounded {
+    border-radius: var(--border-radius);
+  }
+  
+  .shadow {
+    box-shadow: var(--shadow);
+  }
+  
+  .bg-white {
+    background-color: white;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .text-lg {
+    font-size: 1.125rem;
+  }
+  
+  .text-xl {
+    font-size: 1.25rem;
+  }
+  
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+  
+  .font-medium {
+    font-weight: 500;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .font-bold {
+    font-weight: 700;
+  }
+  
+  /* Responsive utilities */
+  @media (min-width: 640px) {
+    .sm\:flex {
+      display: flex;
+    }
+    
+    .sm\:hidden {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .md\:flex {
+      display: flex;
+    }
+    
+    .md\:hidden {
+      display: none;
+    }
+    
+    .md\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .lg\:flex {
+      display: flex;
+    }
+    
+    .lg\:hidden {
+      display: none;
+    }
+    
+    .lg\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }

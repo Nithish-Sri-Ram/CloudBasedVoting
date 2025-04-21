@@ -9,11 +9,11 @@ docker run --name mongodb-container -p 27017:27017 --network voting-network -d m
 
 step 2: Run the backend container
 
-docker run --name backend -p 5001:5001 --network voting-network nithish/backend
+docker run --name backend -p 5001:5001 --network voting-network -d nithishsriram/cloud-backend
 
 step 3: Run the react container
 
-docker run --name frontend -p 5174:80 --network voting-network nithish/frontend
+docker run --name frontend -p 5174:80 --network voting-network -d nithishsriram/cloud-frontend
 
 docker network inspect voting-network
 

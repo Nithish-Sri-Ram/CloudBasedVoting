@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../context/auth/AuthContext';
 import ElectionContext from '../context/election/ElectionContext';
-import './Home.css'; // Assuming you have a CSS file for styles
+import './Home.css';
 
 const Home = () => {
   const { isAuthenticated, user, loadUser } = useContext(AuthContext);
@@ -11,209 +11,238 @@ const Home = () => {
   useEffect(() => {
     loadUser();
     getElections();
+    // eslint-disable-next-line
   }, []);
 
   const activeElections = Array.isArray(elections)
     ? elections.filter(election => election.isActive).slice(0, 3)
     : [];
 
-    const features = [
-      {
-        title: 'Secure Voting',
-        description: 'Your vote is confidential and protected with advanced encryption.',
-        svg: (
-          <svg className="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-          </svg>
-        ),
-      },
-      {
-        title: 'Cloud-Based',
-        description: 'Vote from anywhere, anytime using any device with internet access.',
-        svg: (
-          <svg className="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-          </svg>
-        ),
-      },
-      {
-        title: 'Real-Time Results',
-        description: 'Watch results update in real-time as votes are cast.',
-        svg: (
-          <svg className="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-          </svg>
-        ),
-      },
-      {
-        title: 'User Authentication',
-        description: 'Ensures one vote per registered user for fair results.',
-        svg: (
-          <svg className="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-          </svg>
-        ),
-      },
-    ];
-    
+  const features = [
+    {
+      title: 'Secure Voting',
+      description: 'Your vote is confidential and protected with advanced encryption technology.',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      )
+    },
+    {
+      title: 'Accessible Anywhere',
+      description: 'Vote from any device with internet access, no matter where you are.',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      )
+    },
+    {
+      title: 'Real-Time Results',
+      description: 'View election results as they happen with automatic updates.',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+          <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+        </svg>
+      )
+    },
+    {
+      title: 'Verified Identity',
+      description: 'User authentication ensures each person votes only once per election.',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="8.5" cy="7" r="4"></circle>
+          <polyline points="17 11 19 13 23 9"></polyline>
+        </svg>
+      )
+    }
+  ];
+
+  const steps = [
+    {
+      number: '01',
+      title: 'Create an Account',
+      description: 'Register with your email to get started.'
+    },
+    {
+      number: '02',
+      title: 'Browse Elections',
+      description: 'Explore active and upcoming democratic polls.'
+    },
+    {
+      number: '03',
+      title: 'Cast Your Vote',
+      description: 'Select your preferred candidate securely.'
+    },
+    {
+      number: '04',
+      title: 'View Results',
+      description: 'See the outcome in real-time after voting.'
+    }
+  ];
 
   return (
-    <>
-      {/* Header is assumed to be in a layout component */}
-      
+    <div className="home-container">
       {/* Hero Section */}
       <section className="hero-section">
-  <div className="hero-container" style={{width:'70vw', margin:'0 auto'}}>
-    <h1 className="hero-title">
-      Welcome to <span className="hero-highlight">VoteCloud</span>
-    </h1>
-    <p className="hero-subtitle">
-      A secure cloud-based voting system for political elections.
-    </p>
-
-    {!isAuthenticated ? (
-      <div className="hero-buttons">
-        <Link to="/register" className="hero-btn register-btn">Register</Link>
-        <Link to="/login" className="hero-btn login-btn">Login</Link>
-      </div>
-    ) : (
-      <div className="hero-auth">
-        <p className="hero-welcome">Welcome back, {user?.username}!</p>
-        <Link to="/elections" className="register-btn">View Active Elections</Link>
-      </div>
-    )}
-  </div>
-</section>
-
-      <div className="home-container bg-white">
-        {/* Recent Elections Section */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="section-title text-3xl font-bold text-center mb-12 text-gray-800">Recent Active Elections</h2>
-            
-            {activeElections.length > 0 ? (
-              <div className="election-preview-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {activeElections.map(election => (
-                  <div key={election._id} className="election-card bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 transition duration-300 hover:shadow-xl">
-                    <div className="h-40 bg-blue-100 flex items-center justify-center">
-                      <img src="/api/placeholder/400/320" alt="Election" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-gray-800">{election.title}</h3>
-                      <p className="text-gray-600 mb-4">{election.description?.substring(0, 100)}...</p>
-                      <div className="election-meta flex justify-between text-sm text-gray-500 mb-4">
-                        <span>{election.candidates.length} Candidates</span>
-                        {election.endDate && (
-                          <span>Ends: {new Date(election.endDate).toLocaleDateString()}</span>
-                        )}
-                      </div>
-                      <Link to={`/elections/${election._id}`} className="btn btn-primary block w-full text-center py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">View Election</Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center bg-blue-50 rounded-lg p-8 max-w-2xl mx-auto">
-                <svg className="custom-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
-                 <path
-                     strokeLinecap="round"
-                     strokeLinejoin="round"
-                     strokeWidth="2"
-                     d="M12 9v2m0 4h.01M5.062 20h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 17c-.77 1.333.192 3 1.732 3z"
-                     />
-                 </svg>
-
-                 <p className="no-elections-message">There are currently no active elections. Please check back later.</p>
-
-              </div>
-            )}
-            
+        <div className="hero-content">
+          <h1 className="hero-title">
+            Democracy in the <span className="text-accent">Digital Age</span>
+          </h1>
+          <p className="hero-subtitle">
+            A secure, transparent, and accessible online voting platform
+          </p>
           
-                <div className="view-elections-wrapper">
-                   <Link to="/elections" className="view-elections-btn">View All Elections</Link>
-               </div>
-          </div>
+          {isAuthenticated ? (
+            <div className="hero-authenticated">
+              <p className="welcome-message">Welcome back, <span className="user-name">{user?.username}</span></p>
+              <div className="hero-buttons">
+                <Link to="/elections" className="btn-primary">View Active Elections</Link>
+                {user && user.isAdmin && (
+                  <Link to="/admin/dashboard" className="btn-secondary">Admin Dashboard</Link>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="hero-buttons">
+              <Link to="/register" className="btn-primary">Get Started</Link>
+              <Link to="/login" className="btn-secondary">Login</Link>
+            </div>
+          )}
+        </div>
+        <div className="hero-image">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="hero-illustration">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="8 12 10 14 14 10"></polyline>
+          </svg>
+        </div>
+      </section>
 
-
-        </section>
-
-        {/* Features Section */}
-        <section className="features-section">
-      <div className="features-container">
-        <h2 className="section-title">Why Choose VoteCloud?</h2>
+      {/* Features Section */}
+      <section className="features-section">
+        <div className="section-header">
+          <h2 className="section-title">Why Choose VoteCloud?</h2>
+          <p className="section-subtitle">Our platform provides a secure and convenient way to participate in elections.</p>
+        </div>
+        
         <div className="features-grid">
           {features.map((feature, index) => (
             <div key={index} className="feature-card">
-              <div className="feature-icon">{feature.svg}</div>
+              <div className="feature-icon">
+                {feature.icon}
+              </div>
               <h3 className="feature-title">{feature.title}</h3>
               <p className="feature-description">{feature.description}</p>
             </div>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
 
-        {/* How It Works Section */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <h2 className="section-title text-3xl font-bold text-center mb-12 text-gray-800">How It Works</h2>
-            
-            <div className="steps-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                { number: 1, title: "Register to Vote", description: "Create an account with your verified credentials." },
-                { number: 2, title: "Browse Active Elections", description: "View current and upcoming elections." },
-                { number: 3, title: "Cast Your Vote", description: "Select your preferred candidate securely." },
-                { number: 4, title: "View Results", description: "See real-time election results as they come in." }
-              ].map((step, index) => (
-                <div key={index} className="step-card bg-white p-6 border border-gray-200 rounded-lg text-center relative">
-                  <div className="step-number w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold absolute -top-6 left-1/2 transform -translate-x-1/2">{step.number}</div>
-                  <div className="pt-6">
-                    <h3 className="text-xl font-bold mb-2 text-gray-800">{step.title}</h3>
-                    <p className="text-gray-600">{step.description}</p>
-                  </div>
+      {/* Active Elections Section */}
+      <section className="elections-section">
+        <div className="section-header">
+          <h2 className="section-title">Active Elections</h2>
+          <p className="section-subtitle">Participate in these ongoing democratic processes.</p>
+        </div>
+        
+        {activeElections.length > 0 ? (
+          <div className="elections-preview">
+            {activeElections.map(election => (
+              <div key={election._id} className="election-preview-card">
+                <div className="preview-header">
+                  <span className="status-badge active">Active</span>
+                  <span className="candidates-count">{election.candidates.length} Candidates</span>
                 </div>
-              ))}
+                <div className="preview-body">
+                  <h3 className="preview-title">{election.title}</h3>
+                  <p className="preview-description">
+                    {election.description 
+                      ? election.description.length > 100 
+                        ? `${election.description.substring(0, 100)}...` 
+                        : election.description
+                      : "No description provided."}
+                  </p>
+                </div>
+                <div className="preview-footer">
+                  <div className="date-info">
+                    {election.endDate && (
+                      <div className="end-date">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>Ends: {new Date(election.endDate).toLocaleDateString()}</span>
+                      </div>
+                    )}
+                  </div>
+                  <Link to={`/elections/${election._id}`} className="btn-view">View & Vote</Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="no-elections">
+            <div className="no-elections-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <p>There are no active elections at the moment.</p>
+            <p>Please check back later or contact the administrator.</p>
+          </div>
+        )}
+        
+        <div className="view-all-container">
+          <Link to="/elections" className="btn-view-all">
+            <span>View All Elections</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </Link>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="steps-section">
+        <div className="section-header">
+          <h2 className="section-title">How It Works</h2>
+          <p className="section-subtitle">Getting started with VoteCloud is easy.</p>
+        </div>
+        
+        <div className="steps-container">
+          {steps.map((step, index) => (
+            <div key={index} className="step-card">
+              <div className="step-number">{step.number}</div>
+              <h3 className="step-title">{step.title}</h3>
+              <p className="step-description">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      {!isAuthenticated && (
+        <section className="cta-section">
+          <div className="cta-content">
+            <h2 className="cta-title">Ready to Make Your Voice Heard?</h2>
+            <p className="cta-description">
+              Join thousands of citizens participating in democratic elections through our secure platform.
+            </p>
+            <div className="cta-buttons">
+              <Link to="/register" className="btn-cta">Create Your Account</Link>
+              <Link to="/elections" className="btn-cta-secondary">Browse Elections</Link>
             </div>
           </div>
         </section>
-
-        {/* CTA Section */}
-        {!isAuthenticated && (
-          <section className="cta-section py-16 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-            <div className="container mx-auto px-4 text-center">
-              <div className="max-w-2xl mx-auto">
-                <h2 className="text-3xl font-bold mb-4">Ready to Make Your Voice Heard?</h2>
-                <p className="text-xl mb-8">Join thousands of citizens participating in democratic elections through our secure platform.</p>
-                <Link to="/register" className="btn btn-primary px-8 py-4 bg-white text-blue-600 font-medium rounded-lg hover:bg-gray-100 transition duration-300 inline-block">Get Started Now</Link>
-              </div>
-            </div>
-          </section>
-        )}
-        
-        {/* Footer */}
-        <footer className="bg-gray-100 py-8">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="mb-4 md:mb-0">
-                <div className="flex items-center">
-                  <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zm5 2a2 2 0 11-4 0 2 2 0 014 0zm-8 8a2 2 0 100-4 2 2 0 000 4zm0 1a3 3 0 100-6 3 3 0 000 6z" />
-                  </svg>
-                  <span className="ml-2 text-lg font-medium text-gray-800">VoteCloud</span>
-                </div>
-                <p className="text-sm text-gray-600 mt-1">© 2025 VoteCloud. All rights reserved.</p>
-              </div>
-              <div className="flex space-x-6">
-                <a href="/about" className="text-gray-600 hover:text-blue-600">About</a>
-                <a href="/contact" className="text-gray-600 hover:text-blue-600">Contact</a>
-                <a href="/privacy" className="text-gray-600 hover:text-blue-600">Privacy Policy</a>
-                <a href="/terms" className="text-gray-600 hover:text-blue-600">Terms of Service</a>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 
